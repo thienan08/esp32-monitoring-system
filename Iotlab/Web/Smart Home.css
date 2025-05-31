@@ -1,0 +1,673 @@
+/* Reset và cài đặt ban đầu */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+header {
+    margin-bottom: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+header h1 {
+    color: #2a5298;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+nav ul li a:hover {
+    background-color: rgba(42, 82, 152, 0.1);
+    color: #2a5298;
+}
+
+nav ul li a.active {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(42, 82, 152, 0.2);
+}
+
+nav ul li a i {
+    font-size: 16px;
+}
+
+/* Glassmorphism effect */
+.glassmorphism {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.glassmorphism:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Page styles */
+.page {
+    display: none;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Clock container */
+.clock-container {
+    padding: 25px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#digital-clock {
+    font-size: 48px;
+    font-weight: bold;
+    color: #2a5298;
+    margin-bottom: 20px;
+    font-family: 'Digital', monospace;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.environmental-data {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.data-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.data-item i {
+    color: #2a5298;
+    font-size: 18px;
+}
+
+.data-label {
+    font-weight: 500;
+    color: #555;
+}
+
+.data-value {
+    font-weight: 600;
+    color: #2a5298;
+}
+
+/* Devices Container */
+.devices-container {
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.devices-container h2 {
+    color: #2a5298;
+    margin-bottom: 25px;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.device-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.device-card {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.device-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.device-icon-container {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.device-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.device-card h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Switch styling */
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.status-on {
+    color: #2a5298;
+    font-weight: 600;
+}
+
+.status-off {
+    color: #777;
+    font-weight: 500;
+}
+
+/* Level control styling */
+.level-control {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.level-control label {
+    margin-bottom: 8px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.level-control i {
+    color: #2a5298;
+}
+
+#fan-level, #ac-level {
+    width: 100%;
+    margin-bottom: 5px;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    outline: none;
+}
+
+#fan-level::-webkit-slider-thumb, #ac-level::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2a5298;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#fan-level::-webkit-slider-thumb:hover, #ac-level::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px rgba(42, 82, 152, 0.5);
+}
+
+.level-value {
+    font-weight: 600;
+    color: #2a5298;
+    font-size: 14px;
+}
+
+/* Page 2 styles */
+.page-title {
+    color: #2a5298;
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.environmental-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.data-card {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.data-card h3 {
+    color: #555;
+    margin-bottom: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.data-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2a5298;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.data-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* Chart container */
+.chart-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-container {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-container h2 {
+    color: #2a5298;
+    margin-bottom: 15px;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+canvas {
+    width: 100% !important;
+    height: 200px !important;
+    max-height: 200px;
+}
+
+/* Emergency button styles */
+.emergency-container {
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.emergency-container h2 {
+    color: #d32f2f;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.emergency-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.emergency-button {
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.emergency-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+}
+
+.emergency-button.active {
+    background: linear-gradient(135deg, #b71c1c 0%, #7a0000 100%);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#emergency-status {
+    font-weight: 500;
+    color: #555;
+}
+
+/* Room selector styles */
+.room-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.room-button {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(42, 82, 152, 0.3);
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #2a5298;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.room-button:hover {
+    background-color: rgba(42, 82, 152, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.room-button.active {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(42, 82, 152, 0.2);
+}
+
+.current-room-display {
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.current-room-display h3 {
+    color: #2a5298;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Thêm style cho data icon trang 2*/
+.icon-warning {
+    animation: iconChange 0.5s ease-in-out;
+}
+
+@keyframes iconChange {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Authors footer style */
+.authors-footer {
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #2a5298;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.authors-footer p {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    nav ul {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .environmental-panel {
+        grid-template-columns: 1fr;
+    }
+    
+    #digital-clock {
+        font-size: 36px;
+    }
+    
+    .device-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-row {
+        flex-direction: column;
+    }
+    
+    .chart-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .environmental-data {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .room-selector {
+        flex-wrap: wrap;
+    }
+    
+    .room-button {
+        flex: 1;
+        min-width: 100px;
+    }
+}
+
+/* Thêm phần này vào cuối file CSS */
+/* Kích thước lớn hơn cho các icon động (.gif) */
+.device-icon[src*=".gif"],
+.data-icon[src*=".gif"] {
+    width: 120% !important;
+    height: 120% !important;
+    transform: scale(1.2);
+    margin: -10% 0;
+}
+
+/* Đặc biệt điều chỉnh cho các icon quạt và máy lạnh */
+#fan-icon[src*=".gif"],
+#ac-icon[src*=".gif"] {
+    width: 140% !important;
+    height: 140% !important;
+    transform: scale(1.4);
+    margin: -15% 0;
+}
+
+/* Điều chỉnh container để chứa icon lớn hơn */
+.device-icon-container {
+    overflow: visible !important;
+}
+
+/* Điều chỉnh cho các icon trong data-card */
+.data-value img[src*=".gif"] {
+    width: 60px !important;
+    height: 60px !important;
+    margin: -10px 0;
+}

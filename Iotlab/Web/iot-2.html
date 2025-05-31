@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Nhà thông minh</title>
+    <link rel="stylesheet" href="Smart Home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <img src="image_iot/logo111.png" alt="Smart Home Logo">
+                </div>
+                <h1>Hệ thống Nhà thông minh</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active" id="page1-link"><i class="fas fa-home"></i> Trang chủ</a></li>
+                        <li><a href="#" id="page2-link"><i class="fas fa-bed"></i> Giám sát phòng ngủ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Firebase SDK -->
+        <script type="module">
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+          import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+          const firebaseConfig = {
+            apiKey: "AIzaSyBSBExZN1rB6SUycieoT1CX1XjhsF1g6HI",
+            authDomain: "tt-iotcuoiky.firebaseapp.com",
+            databaseURL: "https://tt-iotcuoiky-default-rtdb.firebaseio.com",
+            projectId: "tt-iotcuoiky",
+            storageBucket: "tt-iotcuoiky.firebasestorage.app",
+            messagingSenderId: "525766823723",
+            appId: "1:525766823723:web:49bdda3eae6a88bde4ff6e",
+            measurementId: "G-7JZ36FCTBL"
+          };
+          
+          const app = initializeApp(firebaseConfig);
+          const db = getDatabase(app);
+
+          window.db = db;
+          window.firebaseRef = ref;
+          window.onFirebaseValue = onValue;
+          window.setFirebaseValue = set;
+        </script>
+
+        <!-- Trang 1: Trang chủ -->
+        <div class="page" id="page1">
+            <div class="dashboard">
+                <div class="clock-container glassmorphism">
+                    <div class="clock">
+                        <div id="digital-clock"></div>
+                        <div class="environmental-data">
+                            <div class="data-item">
+                                <i class="fas fa-temperature-high"></i>
+                                <span class="data-label">Nhiệt độ:</span>
+                                <span id="temperature" class="data-value">0°C</span>
+                            </div>
+                            <div class="data-item">
+                                <i class="fas fa-tint"></i>
+                                <span class="data-label">Độ ẩm:</span>
+                                <span id="humidity" class="data-value">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="devices-container glassmorphism">
+                    <h2><i class="fas fa-sliders-h"></i> Điều khiển thiết bị</h2>
+                    <div class="device-grid">
+                        <!-- TV Control -->
+                        <div class="device-card">
+                            <div class="device-icon-container">
+                                <img src="image_iot/TV_off.png" alt="TV" class="device-icon" id="tv-icon">
+                            </div>
+                            <h3>TV</h3>
+                            <div class="switch-container">
+                                <label class="switch">
+                                    <input type="checkbox" id="tv-switch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <span id="tv-status" class="status-off">OFF</span>
+                            </div>
+                        </div>
+
+                        <!-- Door Control -->
+                        <div class="device-card">
+                            <div class="device-icon-container">
+                                <img src="image_iot/close-door.png" alt="Cửa" class="device-icon" id="door-icon">
+                            </div>
+                            <h3>Cửa</h3>
+                            <div class="switch-container">
+                                <label class="switch">
+                                    <input type="checkbox" id="door-switch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <span id="door-status" class="status-off">OFF</span>
+                            </div>
+                        </div>
+
+                        <!-- Fan Control -->
+                        <div class="device-card">
+                            <div class="device-icon-container">
+                                <img src="image_iot/pc-fan.png" alt="Quạt" class="device-icon" id="fan-icon">
+                            </div>
+                            <h3>Quạt</h3>
+                            <div class="switch-container">
+                                <label class="switch">
+                                    <input type="checkbox" id="fan-switch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <span id="fan-status" class="status-off">OFF</span>
+                            </div>
+                            <div class="level-control">
+                                <label for="fan-level"><i class="fas fa-fan"></i> Cấp độ:</label>
+                                <input type="range" id="fan-level" min="1" max="3" value="1" disabled>
+                                <span id="fan-level-display" class="level-value">1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="authors-footer glassmorphism">
+                <p><i class="fas fa-users"></i> Hoàng Thiên Ân - Trần Quang Bình - Nguyễn Thành Chương</p>
+            </div>
+        </div>
+
+        <!-- Trang 2: Giám sát phòng ngủ -->
+        <div class="page" id="page2" style="display: none;">
+            <div class="dashboard">
+                <h2 class="page-title"><i class="fas fa-bed"></i> Hệ thống giám sát 3 phòng ngủ</h2>
+
+                <div class="room-selector">
+                    <button class="room-button active" data-room="1"><i class="fas fa-door-open"></i> Phòng 1</button>
+                    <button class="room-button" data-room="2"><i class="fas fa-door-open"></i> Phòng 2</button>
+                    <button class="room-button" data-room="3"><i class="fas fa-door-open"></i> Phòng 3</button>
+                </div>
+
+                <div class="current-room-display glassmorphism">
+                    <h3 id="current-room-name"><i class="fas fa-home"></i> Phòng 1</h3>
+                </div>
+
+                <div class="environmental-panel">
+                    <div class="data-card glassmorphism">
+                        <h3><i class="fas fa-temperature-high"></i> Nhiệt độ</h3>
+                        <div class="data-value">
+                            <img src="image_iot/temp1.png" id="temp-icon" class="data-icon">
+                            <span id="bedroom-temp">26°C</span>
+                        </div>
+                    </div>  
+                    <div class="data-card glassmorphism">
+                        <h3><i class="fas fa-tint"></i> Độ ẩm</h3>
+                        <div class="data-value">
+                            <img src="image_iot/humoff.png" id="humidity-icon" class="data-icon">
+                            <span id="bedroom-humidity">60%</span>
+                        </div>
+                    </div>
+                    <div class="data-card glassmorphism">
+                        <h3><i class="fas fa-wind"></i> Khí Gas</h3>
+                        <div class="data-value">
+                            <img src="image_iot/co2off.png" id="co2-icon" class="data-icon">
+                            <span id="bedroom-co2">420ppm</span>    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="devices-container glassmorphism">
+                    <h2><i class="fas fa-sliders-h"></i> Điều khiển thiết bị</h2>
+                    <div class="device-grid">
+                        <!-- Light Control -->
+                        <div class="device-card">
+                            <div class="device-icon-container">
+                                <img src="image_iot/lamp1.png" alt="Đèn" class="device-icon" id="light-icon">
+                            </div>
+                            <h3>Đèn</h3>
+                            <div class="switch-container">
+                                <label class="switch">
+                                    <input type="checkbox" id="light-switch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <span id="light-status" class="status-off">OFF</span>
+                            </div>
+                        </div>
+
+                        <!-- AC Control -->
+                        <div class="device-card">
+                            <div class="device-icon-container">
+                                <img src="image_iot/AirC.png" alt="Máy lạnh" class="device-icon" id="ac-icon">
+                            </div>
+                            <h3>Máy lạnh</h3>
+                            <div class="switch-container">
+                                <label class="switch">
+                                    <input type="checkbox" id="ac-switch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <span id="ac-status" class="status-off">OFF</span>
+                            </div>
+                            <div class="level-control">
+                                <label for="ac-level"><i class="fas fa-snowflake"></i> Cấp độ:</label>
+                                <input type="range" id="ac-level" min="1" max="3" value="1" disabled>
+                                <span id="ac-level-display" class="level-value">1</span>
+                            </div>
+                        </div>
+
+                        <!-- Speaker Control -->
+                        <div class="device-card">
+                            <div class="device-icon-container">
+                                <img src="image_iot/speakeroff.png" alt="Loa" class="device-icon" id="speaker-icon">
+                            </div>
+                            <h3>Loa</h3>
+                            <div class="switch-container">
+                                <label class="switch">
+                                    <input type="checkbox" id="speaker-switch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <span id="speaker-status" class="status-off">OFF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <div class="chart-container glassmorphism">
+                        <h2><i class="fas fa-chart-line"></i> Biểu đồ nhiệt độ & độ ẩm</h2>
+                        <canvas id="environmentChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-container glassmorphism">
+                        <h2><i class="fas fa-chart-pie"></i> Khí Gas theo giờ</h2>
+                        <canvas id="co2Chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="emergency-container glassmorphism">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Nút khẩn cấp</h2>
+                    <div class="emergency-button-container">
+                        <button id="emergency-button" class="emergency-button">
+                            <i class="fas fa-bell"></i> KHẨN CẤP
+                        </button>
+                        <div id="emergency-status" class="status-off">Tắt</div>
+                    </div>
+                    <audio id="emergency-sound" src="image_iot/Emer.mp3" preload="auto"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Smart Home.js"></script>
+</body>
+</html>
